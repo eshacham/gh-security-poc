@@ -1,4 +1,4 @@
-name: "CodeQL Security Scan"
+name: "CodeQL Debug"
 
 permissions:
   contents: read
@@ -8,39 +8,42 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    # Scan PRs targeting main
     branches: [ main ]
 
 jobs:
   analyze:
-    name: Analyze (CodeQL)
+    name: Debug CodeQL
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: List files in repo
+      run: find . -type f -name "*.py" | sort
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: python
-        queries: security-and-quality
+        debug: true  # Enable debug mode
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
 
-    - name: Run CodeQL analysis
+    - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
+      with:
+        output: sarif-results
+        upload: false  # Don't upload yet
 
+    - name: List SARIF files
+      run: find sarif-results -type f | sort
 
-    - name: Upload SARIF Results
+    - name: View SARIF content
+      run: cat sarif-results/*.sarif
+
+    - name: Upload SARIF
       uses: github/codeql-action/upload-sarif@v3
       with:
-        sarif_file: /home/runner/work/_temp/codeql_databases/python/results/codeql-python.sarif
-        category: custom-python-security-scan
-
-    - name: Upload SARIF as Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: codeql-sarif
-        path: /home/runner/work/_temp/codeql_databases/python/results/codeql-python.sarif
+        sarif_file: sarif-results/python.sarif
