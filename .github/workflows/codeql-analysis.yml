@@ -20,6 +20,8 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: python
+        # point at your custom query
+        queries: ./ql/no-os-system.ql
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
