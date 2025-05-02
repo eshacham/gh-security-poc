@@ -21,7 +21,7 @@ jobs:
       with:
         languages: python
         # point at your custom query
-        queries: ./ql/no-os-system.ql
+        queries: +security-and-quality, ./ql/no-os-system.ql
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
