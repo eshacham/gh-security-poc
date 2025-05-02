@@ -33,5 +33,14 @@ jobs:
       uses: github/codeql-action/analyze@v3
 
 
-    - name: Debug CodeQL Database
-      run: ls -R /home/runner/work/_temp/codeql_databases
+    - name: Upload SARIF Results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: /home/runner/work/_temp/codeql_databases/python/results/codeql-python.sarif
+        category: custom-python-security-scan
+
+    - name: Upload SARIF as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: codeql-sarif
+        path: /home/runner/work/_temp/codeql_databases/python/results/codeql-python.sarif
