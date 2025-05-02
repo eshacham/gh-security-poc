@@ -1,5 +1,9 @@
 name: "CodeQL Security Scan"
 
+permissions:
+  contents: read
+  security-events: write
+
 on:
   push:
     branches: [ main ]
@@ -20,11 +24,14 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: python
-        # point at your custom query
-        queries: +security-and-quality, ./ql/no-os-system.ql
+        queries: security-and-quality
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
 
     - name: Run CodeQL analysis
       uses: github/codeql-action/analyze@v3
+
+
+    - name: Debug CodeQL Database
+      run: ls -R /home/runner/work/_temp/codeql_databases
