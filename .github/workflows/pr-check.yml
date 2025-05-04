@@ -1,0 +1,18 @@
+# .github/workflows/pr-check.yml
+name: "PR-only Status Check"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run the app
+        run: |
+          pythin app.py
