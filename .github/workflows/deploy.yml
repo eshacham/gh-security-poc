@@ -2,15 +2,14 @@ name: Deploy to Production
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     name: Deploy (manual approval)
     runs-on: ubuntu-latest
     environment:
-      name: production    # this triggers the manual approval step
+      name: production
 
     steps:
       - name: Checkout code
@@ -18,3 +17,33 @@ jobs:
 
       - name: Deploy placeholder
         run: echo "🚀 Deploying application to production…"
+
+      - name: Notify Success
+        if: ${{ success() }}
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: "✅ Deployment Succeeded"
+          body: |
+            The application was successfully deployed to **production**.
+            - Workflow: ${{ github.workflow }}
+            - Run: #${{ github.run_number }}
+            - Commit: ${{ github.sha }}
+          labels: |
+            deployment
+            success
+
+      - name: Notify Failure
+        if: ${{ failure() }}
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: "❌ Deployment Failed"
+          body: |
+            The application deployment to **production** failed.
+            - Workflow: ${{ github.workflow }}
+            - Run: #${{ github.run_number }}
+            - Commit: ${{ github.sha }}
+          labels: |
+            deployment
+            failure
