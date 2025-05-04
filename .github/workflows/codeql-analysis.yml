@@ -12,7 +12,7 @@ permissions:
   security-events: write  # allow posting alerts
 
 jobs:
-  codeql:
+  analyze:
     name: Analyze with CodeQL
     runs-on: ubuntu-latest
 
