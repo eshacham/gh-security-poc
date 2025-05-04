@@ -15,4 +15,4 @@ jobs:
 
       - name: Run the app
         run: |
-          pythin app.py
+          python app.py
