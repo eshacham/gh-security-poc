@@ -1,0 +1,4 @@
+# .github/CODEOWNERS
+
+# Require code‑owner approval for every change.
+*  @eshacham
