@@ -1,8 +1,11 @@
-# CI/CD Security POC – Commit 1: Repo Hardening
+<!-- README.md -->
+# GitHub Secure CI/CD POC
 
-This very simple Python “app” just prints a hello message.  
-We’ve wired up a GitHub Actions workflow that **only** runs on pull_request → `main`.
+This repo demonstrates a step‑by‑step POC for building a secure CI/CD pipeline on GitHub, evolving through commits:
 
-👉 Next: enable **Branch protection** in Settings:
-- Require pull requests
-- Require this check to pass before merging
+1. Repo hardening  
+2. Branch protection  
+3. Build & test  
+4. Security gates  
+5. Deployment  
+6. Monitoring & audit  
