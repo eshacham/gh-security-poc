@@ -18,4 +18,4 @@ if __name__ == "__main__":
     insecure()
 
 
-AWS_SECRET_ACCESS_KEY = 'AKIA••••••••••••••'
+AWS_SECRET_ACCESS_KEY = 'AKIA1234567890ABCDEF'
