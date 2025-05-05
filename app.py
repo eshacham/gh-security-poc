@@ -16,3 +16,6 @@ def insecure():
 if __name__ == "__main__":
     main()
     insecure()
+
+
+AWS_SECRET_ACCESS_KEY = 'AKIA••••••••••••••'
