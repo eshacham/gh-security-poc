@@ -18,6 +18,9 @@ jobs:
       - name: Deploy placeholder
         run: echo "🚀 Deploying application to production…"
 
+      - name: Show variable
+        run: echo "API endpoint is ${{ vars.API_URL }}"
+
       - name: Notify Success
         if: ${{ success() }}
         uses: actions-ecosystem/action-create-issue@v1
