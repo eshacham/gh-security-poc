@@ -16,3 +16,6 @@ jobs:
       - name: Run the app
         run: |
           python app.py
+
+      - name: Show variable
+        run: echo "API endpoint is ${{ vars.API_URL }}"
