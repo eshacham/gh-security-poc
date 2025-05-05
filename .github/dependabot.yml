@@ -6,6 +6,3 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
-    # optionally: automerge minor/patch updates
-    automerge: true
-    automerge-type: "minor"
