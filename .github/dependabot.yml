@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"                # root of repo
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+
